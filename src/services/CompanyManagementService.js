@@ -19,6 +19,10 @@ class CompanyManagementService {
     updateEmployee(employee, employeeId) {
         return axios.put(COMPANY_MANAGEMENT_BASE_URL + '/' + employeeId, employee);
     }
+
+    deleteEmployee(employeeId) {
+        return axios.delete(COMPANY_MANAGEMENT_BASE_URL + "/" + employeeId);
+    }
 }
 
 export default new CompanyManagementService();

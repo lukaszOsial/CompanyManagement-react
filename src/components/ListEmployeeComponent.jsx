@@ -9,6 +9,7 @@ class ListEmployeeComponent extends Component {
 		this.state = {
 			employees: [],
 		};
+		this.deleteEmployee = this.deleteEmployee.bind(this);
 	}
 
 	componentDidMount() {
@@ -17,12 +18,22 @@ class ListEmployeeComponent extends Component {
 		});
 	}
 
+	deleteEmployee(id) {
+		CompanyManagementService.deleteEmployee(id).then(res => {
+			this.setState({
+				employees: this.state.employees.filter(employee => employee.id != id),
+			});
+		});
+	}
+
 	render() {
 		return (
 			<div>
 				<h2 className='text-center'>Lista pracowników</h2>
 				<Link to='/add-employee/_add'>
-					<button className='btn btn-primary'>Dodaj pracownika</button>
+					<button style={{ marginBottom: "20px" }} className='btn btn-primary'>
+						Dodaj pracownika
+					</button>
 				</Link>
 				<div className='row'>
 					<table className='table table-striped table-bordered'>
@@ -43,13 +54,23 @@ class ListEmployeeComponent extends Component {
 									<td>{employee.email}</td>
 									<td>{employee.salary}</td>
 									<td>
-                                        <Link to={`/add-employee/${employee.id}`}>
+										<Link to={`/add-employee/${employee.id}`}>
+											<button className='btn btn-info'>Edytuj</button>
+										</Link>
 										<button
-											className='btn btn-info'
-										>
-											Edytuj
+											style={{ marginLeft: "20px" }}
+											className='btn btn-danger'
+											onClick={() => this.deleteEmployee(employee.id)}>
+											Usuń
 										</button>
-                                        </Link>
+										<Link to={`/view-employee/${employee.id}`}>
+										<button
+											style={{ marginLeft: "20px" }}
+											className='btn btn-info'
+											>
+											Podgląd
+										</button>
+										</Link>
 									</td>
 								</tr>
 							))}
