@@ -13,7 +13,7 @@ class HeaderComponent extends Component {
             <div>
                 <header>
                     <nav className='navbar navbar-expend-md navbar-dark bg-dark'>
-                        <div><a href="https://lukasz-osial.netlify.app/" className='navbar-brand'>Comapany Management App</a></div>
+                        <div><a href="/employees" className='navbar-brand'>Comapany Management App</a></div>
                     </nav>
                 </header>
             </div>
